@@ -4,27 +4,23 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
 
-#define USER_EMAIL "nayantha2003@gmail.com"
-#define USER_PASSWORD "Lancer2003"
-#define API_KEY "AIzaSyC-Z0erl0XUtY4jlESjVVgp5nCeVK7upbU"
-#define DATABASE_URL "https://sosamala-default-rtdb.asia-southeast1.firebasedatabase.app/"
-#define FIREBASE_PROJECT_ID "sosamala"
-
-FirebaseData fbdo;
-FirebaseAuth auth;
-FirebaseConfig config;
-
-class FireClass
+class FirestoreClass
 {
 private:
     String uid;
     unsigned long dataMillis = 0;
 
 public:
+    FirebaseData fbdo;
+    FirebaseAuth auth;
+    FirebaseConfig config;
+
     void init()
     {
         config.api_key = API_KEY;
+
         config.database_url = DATABASE_URL;
+
         auth.user.email = USER_EMAIL;
         auth.user.password = USER_PASSWORD;
 
