@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "array": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "C:/Users/Nayantha Nethsara/Documents/GitHub/sosamala-esp-firestore/.pio/libdeps/esp32doit-devkit-v1/ArduinoJson/src"
 }

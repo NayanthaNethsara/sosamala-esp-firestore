@@ -1,23 +1,26 @@
 #include "Network.h"
 #include "userconfig.h"
-#include "Firestore_Client.h"
 #include "Realtime_Client.h"
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
+#include <ESP32Servo.h>
 
 #define DHT11PIN 4
 #define DHTTYPE DHT11
 #define MOTOR 22
+const int sensor_pin = A6;
+Servo myservo;
 
 DHT dht(DHT11PIN, DHTTYPE);
 
 const long interval = 5000;
 unsigned long previousMillis = 0;
 
-int moisture = 566, temperature = 27, humidity = 80;
-const int sensor_pin = A6;
-bool dispenserStatus, mistingStatus, lightStatus, soilSuperior, mistSuperior;
+int moisture = 50, temperature = 27, humidity = 70;
+
+bool dispenserStatus, mistingStatus, lightStatus, soilSuperior, mistSuperior, servostatus;
+int servoPin = 2;
 
 RealtimeDBClass FireReal;
 
@@ -31,6 +34,7 @@ void setup()
   initWiFi();
 
   FireReal.init();
+  myservo.attach(servoPin);
 
   pinMode(MOTOR, OUTPUT);
 }
@@ -44,6 +48,11 @@ void loop()
     Firebase.refreshToken(&FireReal.config);
     Serial.println("Refresh token");
   }
+
+  // myservo.write(0);
+  // delay(1500);
+  // myservo.write(90);
+  // delay(1500);
 
   int sensor_analog = analogRead(sensor_pin);
 
@@ -63,11 +72,21 @@ void loop()
   Serial.println(moisture);
 
   Serial.println("\n");
-
+  delay(2000);
   dispenserStatus = FireReal.StatusRead("Dispenser");
   mistingStatus = FireReal.StatusRead("MistingNozzle");
   lightStatus = FireReal.StatusRead("Light");
+  servostatus = FireReal.StatusRead("Camera");
 
+  if (servostatus)
+  {
+
+    myservo.write(0);
+  }
+  else
+  {
+    myservo.write(0);
+  }
   Serial.println("\n");
   Serial.print("Misting Status: ");
   Serial.println(mistingStatus);

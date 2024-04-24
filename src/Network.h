@@ -1,6 +1,6 @@
 #include <WiFi.h>
 
-#define WIFI_SSID "SLT"
+#define WIFI_SSID "Nayaa"
 #define WIFI_PASSWORD "Lancer2003"
 
 void initWiFi()
