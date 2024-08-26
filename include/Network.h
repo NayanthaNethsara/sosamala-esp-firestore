@@ -1,17 +1,19 @@
-#include <WiFi.h>
+#ifndef NETWORK_H
+#define NETWORK_H
 
-#define WIFI_SSID "Nayaa"
-#define WIFI_PASSWORD "Lancer2003"
-
-void initWiFi()
+class Network
 {
-    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-    Serial.print("Connecting to WiFi ..");
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        Serial.print('.');
-        delay(1000);
-    }
-    Serial.println(WiFi.localIP());
-    Serial.println();
-}
+public:
+    void init();
+    void authenticate(String ssid, String password);
+    bool isConnected();
+    void setAutoReconnect(bool status);
+
+private:
+    String _ssid;
+    String _password;
+    bool _isConnected;
+    bool _autoReconnect;
+};
+
+#endif // NETWORK_H
