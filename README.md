@@ -46,7 +46,7 @@ This project is designed to facilitate the real-time monitoring and automation o
 
 1. Clone this repository.
    ```bash
-   git clone https://github.com/yourusername/greenhouse-automation-system.git
+   git clone https://github.com/NayanthaNethsara/sosamala-esp-firestore.git
    ```
 2. Set up your Firebase account and configure the Realtime Database.
 3. Flash the ESP32 with the provided code using PlatformIO.
